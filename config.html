@@ -1,0 +1,102 @@
+<!-- config.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configuração de Redirecionamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #configPanel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginPanel">
+        <h2>Acesso Administrativo</h2>
+        <input type="password" id="passwordInput" placeholder="Digite a senha de administrador">
+        <button onclick="checkPassword()">Acessar</button>
+        <p id="loginStatus"></p>
+    </div>
+
+    <div id="configPanel">
+        <h2>Configurar Link de Redirecionamento</h2>
+        <input type="text" id="redirectUrl" placeholder="Digite o URL para redirecionamento (ex: https://t.me/ItsInvictus)">
+        <button onclick="saveUrl()">Salvar URL</button>
+        <p id="status"></p>
+        <button onclick="logout()" style="background-color: #f44336;">Sair</button>
+    </div>
+
+    <script>
+        // Senha de administrador - ALTERE ISTO PARA SUA SENHA SEGURA!
+        const adminPassword = "ofertablack";
+        
+        // Verifica se o usuário já está autenticado
+        const isAuthenticated = sessionStorage.getItem('authenticated') === 'true';
+        if (isAuthenticated) {
+            document.getElementById('loginPanel').style.display = 'none';
+            document.getElementById('configPanel').style.display = 'block';
+            loadSavedUrl();
+        }
+        
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password === adminPassword) {
+                sessionStorage.setItem('authenticated', 'true');
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('configPanel').style.display = 'block';
+                loadSavedUrl();
+            } else {
+                document.getElementById('loginStatus').innerText = 'Senha incorreta!';
+                document.getElementById('loginStatus').style.color = 'red';
+            }
+        }
+        
+        function loadSavedUrl() {
+            document.getElementById('redirectUrl').value = localStorage.getItem('redirectUrl') || '';
+        }
+        
+        function saveUrl() {
+            const url = document.getElementById('redirectUrl').value.trim();
+            if (!url) {
+                document.getElementById('status').innerText = 'Por favor, digite um URL válido';
+                return;
+            }
+            
+            localStorage.setItem('redirectUrl', url);
+            document.getElementById('status').innerText = 'URL salvo com sucesso! O redirecionamento agora levará para: ' + url;
+        }
+        
+        function logout() {
+            sessionStorage.removeItem('authenticated');
+            document.getElementById('loginPanel').style.display = 'block';
+            document.getElementById('configPanel').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+        }
+        
+        // Adiciona funcionalidade para pressionar Enter no campo de senha
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
