@@ -42,7 +42,7 @@
             margin: 15px 0;
             margin-bottom: 5px;
             line-height: 1.1;
-            background: black;
+            background: rgb(0, 0, 0);
             padding: 5px 10px;
             display: inline-block;
             color: white;
@@ -55,6 +55,12 @@
             line-height: 1.6;
             color: #333;
             margin: 20px 0;
+        }
+
+        .ultima-chance {
+            font-size: 1.2em; /* Tamanho reduzido */
+            display: inline-block;
+            margin: 10px 0;
         }
 
         .preco {
@@ -117,6 +123,21 @@
                 font-size: 1.5em; 
                 padding: 20px 40px;
             }
+
+            /* ... outros estilos ... */
+    .botao { 
+        font-size: 1.3em;      /* Reduzindo o tamanho da fonte */
+        padding: 15px 30px;    /* Reduzindo o padding */
+        border-width: 2px;     /* Borda mais fina */
+        box-shadow: 0 5px 15px rgba(0,204,0,0.5); /* Sombra mais suave */
+    }
+
+                    /* DENTRO DO MEDIA QUERY */
+        @media (max-width: 480px) {
+            .ultima-chance {
+        font-size: 1em;
+    }
+}
         }
     </style>
 </head>
@@ -125,16 +146,16 @@
         <h1>⚠️ ATENÇÃO: <span style="color: #000">NÃO SAIA AGORA!</span></h1>
         
         <div class="texto-urgente">
-            <p>VOCÊ FOI <strong>SELECIONADO</strong> PARA RECEBER O SUPER<br>
+            <p>VOCÊ FOI <strong>SELECIONADO</strong> PARA RECEBER UM<br>
             <span class="destaque">MEGA DESCONTO RELÂMPAGO!</span></p>
             
-            <p>❗<strong>ESSA É SUA ÚLTIMA CHANCE</strong>❗<br>
+            <p>❗<strong class="ultima-chance">ESSA É SUA ÚLTIMA CHANCE</strong>❗<br>
             Se você fechar esta página você <span style="color: #ff0000">NUNCA MAIS</span> terá<br>
             esta oportunidade novamente!</p>
             
             <div class="preco">R$ 7,99</div>
             
-            <p>⚠️ <strong>HOJE:</strong> 10.000 Figurinhas Criativas - Pack Premium<br>
+            <p>⚠️ <strong>APENAS HOJE:</strong> 10.000 Figurinhas Criativas - Pack Premium<br>
             <del style="color: #666">De R$ 15,99</del> <strong style="color: #ff0000">(-77% DE DESCONTO!)</strong></p>
         </div>
 
