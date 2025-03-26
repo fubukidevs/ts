@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ULTIMA CHANCE! NÃO PERCA!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: white;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            border: 3px solid #ff0000;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            animation: piscarBorda 1s infinite alternate;
+        }
+
+        h1 {
+            color: #ff0000;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .destaque {
+            color: #ff0000;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 15px 0;
+            margin-bottom: 5px;
+            line-height: 1.1;
+            background: black;
+            padding: 5px 10px;
+            display: inline-block;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .texto-urgente {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .preco {
+            font-size: 3.5em;
+            color: #00aa00;
+            font-weight: bold;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+        }
+
+        .timer {
+            font-size: 2.5em;
+            color: white;
+            background: #ff0000;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            animation: pulsar 1s infinite;
+        }
+
+        .botao {
+            background: #00cc00;
+            color: white !important;
+            padding: 25px 60px;
+            font-size: 2em;
+            border: 3px solid #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0,204,0,0.6);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .botao:hover {
+            background: #00aa00;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,204,0,0.8);
+        }
+
+        @keyframes pulsar {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+
+        @keyframes piscarBorda {
+            0% { border-color: #ff0000; }
+            100% { border-color: #ff6666; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            .preco { font-size: 2.5em; }
+            .timer { font-size: 1.8em; }
+            .texto-urgente { font-size: 1.2em; }
+            .botao { 
+                font-size: 1.5em; 
+                padding: 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ ATENÇÃO: <span style="color: #000">NÃO SAIA AGORA!</span></h1>
+        
+        <div class="texto-urgente">
+            <p>VOCÊ FOI <strong>SELECIONADO</strong> PARA RECEBER O SUPER<br>
+            <span class="destaque">MEGA DESCONTO RELÂMPAGO!</span></p>
+            
+            <p>❗<strong>ESSA É SUA ÚLTIMA CHANCE</strong>❗<br>
+            Se você fechar esta página você <span style="color: #ff0000">NUNCA MAIS</span> terá<br>
+            esta oportunidade novamente!</p>
+            
+            <div class="preco">R$ 7,99</div>
+            
+            <p>⚠️ <strong>HOJE:</strong> 10.000 Figurinhas Criativas - Pack Premium<br>
+            <del style="color: #666">De R$ 15,99</del> <strong style="color: #ff0000">(-77% DE DESCONTO!)</strong></p>
+        </div>
+
+        <div class="timer" id="timer">05:00</div>
+
+        <p class="texto-urgente">Mais de <strong>873 pessoas</strong> compraram nos últimos minutos!<br>
+        <span style="color: #ff0000">NÃO PERCA ESSA!</span> Isso vai voltar ao preço normal em:</p>
+
+        <a href="#" class="botao">ACEITAR OFERTA AGORA</a>
+
+        <p style="color: #666; margin-top: 20px; font-size: 0.9em">
+        ⚠️ Se você sair sem comprar, <strong>VAI SE ARREPENDER</strong> quando vir o preço original amanhã! Esta é sua <strong>ÚNICA CHANCE</strong> de garantir acesso vitalício por menos de R$ 10!</p>
+    </div>
+
+    <script>
+        let timeLeft = 300;
+        const timer = document.getElementById('timer');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timer.innerHTML = `${minutes}:${seconds}`;
+            
+            if(timeLeft === 0) {
+                window.location.href = 'sem-desconto.html';
+            } else {
+                timeLeft--;
+            }
+        }
+
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
